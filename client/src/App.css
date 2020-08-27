@@ -1,0 +1,146 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.carousel-cont{
+    height: 50vh;
+}
+.card-img{
+    height: 200px;
+    width: 200px;
+}
+.side-list{
+    list-style-type:none;
+}
+.article-img{
+    height: 400px;
+    width: 400px;
+}
+.grad-black{
+    background-image: linear-gradient(to top, rgba(0,0,0,0.90),rgba(0,0,0,0.90));
+}
+.text-cream{
+    color: rgb(209, 156, 71);
+}
+.bod-bottom{
+    border-bottom: solid 2px #d19c47;
+    padding: 1vh 0vw 1vh 0vw;
+}
+.icons-head{
+    padding: 0px 3px;
+}
+.noMargin{
+    margin: 0px;
+}
+.iconlist li{
+    display: inline;
+    font-size: 2vh;
+    padding-top: 3vh;
+    list-style-type: none;
+}
+.navlist li{
+    display: inline;
+    font-size: 17px;
+    padding: 3vh 1vh;
+    font-weight: bold;
+}
+.show-md{
+    display: none;
+}
+.LOGO{
+    width: 160px;
+}
+@media screen and (max-width: 492px) {
+    .hide-sm{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    .hide-md{
+        display: none;
+    }
+    .show-md{
+        display: block;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .logo{
+        padding: 1vh 10vw;
+    }
+    .hide-xl{
+        display: none;
+    }
+}
+@media screen and (max-width: 992px) {
+    .hide-lg{
+        display: none;
+    }
+    .fixed-row-head{
+        height: 1vh;
+    }
+}
+
+
+
+/* The sidebar menu */
+.sidebar {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to top, rgba(0,0,0,0.90),rgba(0,0,0,0.90));
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.sidebar ul a{
+    display: inline;
+    font-size: 25px;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgba(242, 238, 233,0.90);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: rgba(214, 186, 150, 0.7);
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+    .sidebar ul {font-size: 18px;}
+}
