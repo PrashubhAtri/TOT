@@ -17,15 +17,15 @@ const UserSchema = new mongoose.Schema({
     },
     admin:{
         type: Boolean,
-        default: false
+        default: true
     },
     editor:{
         type: Boolean,
-        default: false
+        default: true
     },
     writer:{
         type: Boolean,
-        default: false
+        default: true
     }
 })
 

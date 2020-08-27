@@ -36,6 +36,9 @@ const NavBar = ({auth:{ isAuthenticated, loading }, logout}) => {
             <Link to="/dashboard">
                 Dashboard
             </Link>
+            <a href="https://totregisteration.netlify.app/">
+                Register
+            </a>
         </div>
     )
 
