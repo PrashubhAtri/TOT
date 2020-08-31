@@ -10,7 +10,8 @@ const ArticleForm = ({createArticle, history}) => {
         featurephoto:'',
         content:'',
         source:'',
-        genre:''
+        genre:'',
+        snippet:''
     })
 
     const {
@@ -18,7 +19,8 @@ const ArticleForm = ({createArticle, history}) => {
         featurephoto,
         content,
         source,
-        genre
+        genre,
+        snippet
     } = formData
 
     const onChange = e => setFormData({...formData, [e.target.name]:e.target.value})
@@ -39,19 +41,25 @@ const ArticleForm = ({createArticle, history}) => {
                         <div className="col-12">
                             <form className="text-cream text-center" onSubmit={e=>onSubmit(e)}>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Heading" name="heading" onChange={(e)=>onChange(e)} value={heading} required/>
+                                    <div className="text-left">
+                                        <label className="text-dark small">Required are marked as *</label>
+                                    </div>
+                                    <input type="text" className="form-control" placeholder="Heading*" name="heading" onChange={(e)=>onChange(e)} value={heading} required/>
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control" placeholder="Feature Photo Link" onChange={(e)=>onChange(e)} value={featurephoto} name="featurephoto" />
                                 </div>
                                 <div className="form-group">
-                                    <textarea className="form-control" placeholder="Content" name="content" onChange={(e)=>onChange(e)} value={content} required rows="15"/>
+                                    <textarea className="form-control" placeholder="Content*" name="content" onChange={(e)=>onChange(e)} value={content} required rows="15"/>
+                                </div>
+                                <div className="form-group">
+                                    <input type="text" className="form-control" placeholder="Snippet*" onChange={(e)=>onChange(e)} value={snippet} name="snippet" />
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control" placeholder="Source" onChange={(e)=>onChange(e)} value={source} name="source" />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Genre" onChange={(e)=>onChange(e)} value={genre} name="genre" />
+                                    <input type="text" className="form-control" placeholder="Beat*" onChange={(e)=>onChange(e)} value={genre} name="genre" />
                                 </div>
                                 <button type="submit" className="btn btn-success">Submit</button>
                             </form>

@@ -2,6 +2,7 @@ import {
     GET_DRAFTARTICLES,
     DRAFTARTICLE_ERROR,
     CLEAR_DRAFTARTICLES,
+    CLEAR_DRAFTARTICLE,
     GET_DRAFTARTICLE
 } from "../actions/types";
 
@@ -18,11 +19,13 @@ export default function (state=initialState, action) {
             return {
                 ...state,
                 draftarticles: action.payload,
+                draftarticle: null,
                 loading: false
             }
         case GET_DRAFTARTICLE:
             return {
                 ...state,
+                draftarticles: [],
                 draftarticle: action.payload,
                 loading: false
             }
@@ -32,10 +35,16 @@ export default function (state=initialState, action) {
                 error: action.payload,
                 loading: false
             }
+        case CLEAR_DRAFTARTICLE:
+            return {
+                ...state,
+                draftarticle: null,
+                loading: false
+            }
         case CLEAR_DRAFTARTICLES:
             return {
                 ...state,
-                draftarticles: null,
+                draftarticles: [],
                 draftarticle: null,
                 loading: false
             }

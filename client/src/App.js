@@ -17,7 +17,6 @@ import Editorial from "./components/layouts/Genres/Editorials";
 import Lifestyle from "./components/layouts/Genres/Lifestyle";
 import Entertainment from "./components/layouts/Genres/Entertainment";
 import About from "./components/layouts/major/About";
-import Vision from "./components/layouts/major/Vision";
 import Founders from "./components/layouts/major/Founders";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
@@ -25,8 +24,13 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/layouts/team/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import ArticleForm from "./components/layouts/team/Article-Form";
-import EditArticleForm from "./components/layouts/team/EditArticle";
 import EditDraftForm from "./components/layouts/team/Draft-Form";
+import EcoAndBuisness from "./components/layouts/Genres/EcoAndBuisness";
+import Technology from "./components/layouts/Genres/Tech";
+import Sports from "./components/layouts/Genres/Sports";
+import ConatctUs from "./components/layouts/major/ConatctUS";
+import EditArticleForm from "./components/layouts/team/EditArticleForm";
+import ArticleSubmission from "./components/layouts/team/ArticleSubmission";
 
 if(localStorage.token){
     setAuthToken(localStorage.token)
@@ -49,9 +53,10 @@ const App = () => {
                         <Switch>
                             <Route exact path='/login' component={Login}/>
                             <PrivateRoute exact path='/dashboard' component={Dashboard} />
-                            <PrivateRoute exaxt path='/create-article' component={ArticleForm} />
-                            <PrivateRoute exaxt path="/edit-article/:id" component={EditArticleForm} />
-                            <PrivateRoute exaxt path="/edit-draft/:id" component={EditDraftForm} />
+                            <PrivateRoute exact path='/create-article' component={ArticleForm} />
+                            <PrivateRoute exact path="/edit-article/:id" component={EditArticleForm} />
+                            <PrivateRoute exact path="/submit-article/:id" component={ArticleSubmission}/>
+                            <PrivateRoute exact path="/edit-draft/:id" component={EditDraftForm} />
                             <Route exact path='/article/:id' component={Article} />
                             <Route exact path='/genre/national' component={National}/>
                             <Route exact path='/genre/international' component={International}/>
@@ -59,9 +64,12 @@ const App = () => {
                             <Route exact path='/genre/editorial' component={Editorial}/>
                             <Route exact path='/genre/lifestyle' component={Lifestyle}/>
                             <Route exact path='/genre/entertainment' component={Entertainment}/>
+                            <Route exact path='/genre/ecoandbuisness' component={EcoAndBuisness}/>
+                            <Route exact path='/genre/tech' component={Technology}/>
+                            <Route exact path='/genre/sports' component={Sports}/>
                             <Route exact path='/about' component={About}/>
-                            <Route exact path='/vision' component={Vision}/>
                             <Route exact path='/founders' component={Founders}/>
+                            <Route exact path='/contactus' component={ConatctUs}/>
                         </Switch>
                     </section>
                     <NewsLetter/>

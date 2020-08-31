@@ -16,13 +16,26 @@ const ArticleGrid = ({getArticles, article:{articles, loading}}) => {
                 <div className="row">
                     {articles.length > 0 ? (
                         articles.slice(0,6).map(art=>(
-                            <div className="col-md-6">
-                                <div key={art._id}>
+                            <div className="col-md-6" key={art._id}>
+                                <div>
                                     <div className="card my-2">
-                                        <div className="text-center p-2 text-cream bg-dark">
+                                        <div className="text-center p-2 text-cream bg-light">
                                             <h4>
                                                 {art.heading}
                                             </h4>
+                                            <div className="container">
+                                                <div className="row">
+                                                    <div className="col-12 p-2">
+                                                        <b>
+                                                            {art.genre.toUpperCase()}
+                                                        </b>
+                                                        {' | '}
+                                                        <i>
+                                                            {art.author.toUpperCase()}
+                                                        </i>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <hr/>
                                         <img src={art.featurephoto} alt="Display Image" className="card-img m-auto"/>
@@ -30,9 +43,11 @@ const ArticleGrid = ({getArticles, article:{articles, loading}}) => {
                                             <p className="card-text p-1">
                                                 {art.snippet}
                                             </p>
-                                            <Link to={`/article/${art._id}`} className="text-dark">
-                                                <h5>Further Reading...</h5>
-                                            </Link>
+                                            <div className="text-center">
+                                                <Link to={`/article/${art._id}`} className="text-dark">
+                                                    <h5>Read More...</h5>
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

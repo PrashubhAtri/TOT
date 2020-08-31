@@ -4,7 +4,8 @@ import {setAlert} from "./alert";
 import {
     DRAFTARTICLE_ERROR,
     GET_DRAFTARTICLES,
-    GET_DRAFTARTICLE
+    GET_DRAFTARTICLE,
+    CLEAR_DRAFTARTICLE
 } from "./types";
 
 //get current users articles

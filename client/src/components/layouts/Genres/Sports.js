@@ -6,7 +6,7 @@ import {getArticles} from "../../../actions/article";
 import {Link} from "react-router-dom";
 
 
-const Lifestyle = ({getArticles, article:{articles, loading}}) => {
+const Sports = ({getArticles, article:{articles, loading}}) => {
     useEffect(()=>{
         getArticles();
     },[getArticles])
@@ -15,7 +15,7 @@ const Lifestyle = ({getArticles, article:{articles, loading}}) => {
                 <div className="col-md-12">
                     <div className="row">
                         {articles.length > 0 ? (
-                            articles.filter(article => (article.genre==="Lifestyle" || article.genre==="lifestyle")).map(art=>(
+                            articles.filter(article => (article.genre==="Sports" || article.genre==="sports")).map(art=>(
                                 <div className="col-md-6">
                                     <div key={art._id}>
                                         <div className="card mb-4">
@@ -46,7 +46,7 @@ const Lifestyle = ({getArticles, article:{articles, loading}}) => {
     </Fragment>
 }
 
-Lifestyle.propTypes = {
+Sports.propTypes = {
     getArticles: PropTypes.func.isRequired,
     article: PropTypes.object.isRequired
 }
@@ -55,4 +55,4 @@ const mapStateToProps = state => ({
     article : state.article
 })
 
-export default connect(mapStateToProps,{getArticles})(Lifestyle);
+export default connect(mapStateToProps,{getArticles})(Sports);

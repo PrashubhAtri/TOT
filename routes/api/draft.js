@@ -8,7 +8,7 @@ const CheckObjId = require('../../middleware/checkObjId');
 
 const route = Router()
 
-//Getting my drafts
+//Getting all drafts
 route.get('/',auth,async (req,res)=>{
     try{
         const drafts = await DraftPost.find().sort({date: -1})
@@ -50,24 +50,22 @@ route.put('/:id/save',[auth,CheckObjId('id'),
         heading,
         featurephoto,
         genre,
+        snippet,
         content,
         source
     } = req.body
     try{
-        const user = await User.findById(req.user.id).select('-password')
-
         const DraftFields = {
             heading: heading,
-            author: user.name,
             genre:genre,
+            snippet:snippet,
             content: content,
             featurephoto: featurephoto,
-            source: source,
-            user: req.user.id
+            source: source
         }
 
         let draft = await DraftPost.findOneAndUpdate(
-            { user: req.user.id },
+            { heading: heading },
             { $set: DraftFields },
             { new: true, upsert: true }
         );
@@ -85,13 +83,11 @@ route.delete('/:id/submit',[auth,CheckObjId('id')],async (req,res)=>{
         if(!draft){
             return res.status(404).json({msg: 'DraftForm not found'})
         }
-        if(draft.user.toString() !== req.user.id){
-            return res.status(401).json({msg: 'User not Authorised'})
-        }
         const newPost = new Draft({
             heading: draft.heading,
             author: draft.author,
             genre: draft.genre,
+            snippet:draft.snippet,
             content: draft.content,
             featurephoto: draft.featurephoto,
             contentrelphotos: draft.contentrelphotos,

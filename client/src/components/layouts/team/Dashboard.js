@@ -1,12 +1,12 @@
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment, useEffect} from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux"
-import {Link} from "react-router-dom";
-import {getDraftArticles} from "../../../actions/draftarticles";
+import {Link, withRouter} from "react-router-dom";
+import {getDraftArticles, SubmitArticle} from "../../../actions/draftarticles";
 import {getDrafts} from "../../../actions/drafts";
 import Spinner from "../major/Spinner";
 
-const Dashboard = ({getDraftArticles, getDrafts, auth, draftarticles, drafts}) => {
+const Dashboard = ({getDraftArticles, getDrafts, auth, draftarticles, history, drafts}) => {
     useEffect(()=>{
         getDraftArticles()
         getDrafts()
@@ -38,9 +38,16 @@ const Dashboard = ({getDraftArticles, getDrafts, auth, draftarticles, drafts}) =
                                         <p className="card-text p-1">
                                             {art.snippet}
                                         </p>
-                                        <Link to={`/edit-article/${art._id}`} className="btn btn-warning text-center m-2">
-                                            <h4>Edit or Submit</h4>
-                                        </Link>
+                                        <button className="btn btn-warning text-center m-2 text-decoration-none">
+                                            <Link to={`/edit-article/${art._id}`}>
+                                                <h4>Edit</h4>
+                                            </Link>
+                                        </button>
+                                        <button className="btn btn-success text-center m-2 text-decoration-none">
+                                            <Link to={`/submit-article/${art._id}`}>
+                                                <h4>Submit</h4>
+                                            </Link>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -103,4 +110,4 @@ const mapStateToProps = state =>({
     drafts: state.drafts
 });
 
-export default connect(mapStateToProps,{getDraftArticles, getDrafts})(Dashboard);
+export default connect(mapStateToProps,{getDraftArticles, getDrafts})(withRouter(Dashboard));

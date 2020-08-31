@@ -11,27 +11,31 @@ const EditDraftForm = ({drafts:{loading, draft}, editDraft, getDraftByID, Submit
         featurephoto:'',
         content:'',
         source:'',
-        genre:''
+        genre:'',
+        snippet:''
     })
 
     useEffect(()=>{
-        getDraftByID(match.params.id);
-
-        setFormData({
-            heading: loading || !draft.heading ? '' : draft.heading,
-            featurephoto: loading || !draft.featurephoto ? '' : draft.featurephoto,
-            content: loading || !draft.content ? '' : draft.content,
-            source: loading || !draft.source ? '' : draft.source,
-            genre: loading || !draft.genre ? '' : draft.genre
-        })
-    },[getDraftByID, loading])
+        if(!draft) getDraftByID(match.params.id);
+        if(!loading && draft){
+            setFormData({
+                heading: loading || !draft.heading ? '' : draft.heading,
+                featurephoto: loading || !draft.featurephoto ? '' : draft.featurephoto,
+                content: loading || !draft.content ? '' : draft.content,
+                source: loading || !draft.source ? '' : draft.source,
+                genre: loading || !draft.genre ? '' : draft.genre,
+                snippet: loading || !draft.snippet ? '' : draft.snippet
+            })
+        }
+    },[getDraftByID, loading, draft])
 
     const {
         heading,
         featurephoto,
         content,
         source,
-        genre
+        genre,
+        snippet
     } = formData
 
     const onChange = e => setFormData({...formData, [e.target.name]:e.target.value})
@@ -66,10 +70,13 @@ const EditDraftForm = ({drafts:{loading, draft}, editDraft, getDraftByID, Submit
                                     <textarea className="form-control" placeholder="Content" name="content" onChange={(e)=>onChange(e)} value={content} required rows="15"/>
                                 </div>
                                 <div className="form-group">
+                                    <input type="text" className="form-control" placeholder="Snippet*" onChange={(e)=>onChange(e)} value={snippet} name="snippet" />
+                                </div>
+                                <div className="form-group">
                                     <input type="text" className="form-control" placeholder="Source" onChange={(e)=>onChange(e)} value={source} name="source" />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Genre" onChange={(e)=>onChange(e)} value={genre} name="genre" />
+                                    <input type="text" className="form-control" placeholder="Beat" onChange={(e)=>onChange(e)} value={genre} name="genre" />
                                 </div>
                                 <button type="submit" className="btn btn-success">Save Changes</button>
                             </form>

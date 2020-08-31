@@ -10,12 +10,13 @@ const NewsLetter = () => {
                             <div className="card-body">
                                 <form action="www.google.com">
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputEmail1" className="h4 text-success">
+                                        <label htmlFor="exampleInputEmail1" className="h4 text-cream">
                                             <h4>Subscribe to our Newsletter:</h4>
                                         </label>
+                                        <br/>
                                         <button className="btn btn-dark">
-                                            <a href="https://mailchi.mp/fb6fa9355f3b/theodde" className="text-info">
-                                                Please Fill this form.
+                                            <a href="https://mailchi.mp/517787c0d86a/tot-subscription" className="text-warning text-decoration-none">
+                                                Subscribe Now
                                             </a>
                                         </button>
                                     </div>

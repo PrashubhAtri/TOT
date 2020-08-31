@@ -15,7 +15,7 @@ const Editorial = ({getArticles, article:{articles, loading}}) => {
                 <div className="col-md-12">
                     <div className="row">
                         {articles.length > 0 ? (
-                            articles.filter(article => (article.genre==="Editorial")).map(art=>(
+                            articles.filter(article => (article.genre==="Editorial" || article.genre==="editorial")).map(art=>(
                                 <div className="col-md-6">
                                     <div key={art._id}>
                                         <div className="card mb-4">

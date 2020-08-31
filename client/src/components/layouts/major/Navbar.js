@@ -20,8 +20,13 @@ const NavBar = ({auth:{ isAuthenticated, loading }, logout}) => {
 
     const toggle = () => setIsOpen(!isOpen);
 
-    const openNav = () => {
-        document.getElementById("mySidebar").style.width = "30%";
+    const openNav = () =>{
+        if(window.innerWidth<600){
+            document.getElementById("mySidebar").style.width = "100%";
+        }else{
+            document.getElementById("mySidebar").style.width = "30%";
+        }
+        setTimeout(()=>{closeNav()},5000)
     }
     const closeNav = () => {
         document.getElementById("mySidebar").style.width = "0";
@@ -33,19 +38,14 @@ const NavBar = ({auth:{ isAuthenticated, loading }, logout}) => {
                 <i className="fas fa-sign-out-alt"/>{' '}
                 Logout
             </Link>
-            <Link to="/dashboard">
+            <Link to="/dashboard" onClick={()=>closeNav()}>
                 Dashboard
             </Link>
         </div>
     )
 
     const GuestLinks = (
-        <div>
-            <Link to="/login">Login</Link>
-            <a href="https://totregisteration.netlify.app/">
-                Register
-            </a>
-        </div>
+        <Link to="/login" onClick={()=>closeNav()}>Login</Link>
     )
 
     return(
@@ -59,7 +59,7 @@ const NavBar = ({auth:{ isAuthenticated, loading }, logout}) => {
                 </div>
                 <div className="row">
                     <div className="col-12 text-center">
-                        <Navbar color="light" light expand="md">
+                        <Navbar light expand="lg">
                             <button type="button" className="btn openbtn border border-dark" onClick={()=>openNav()}>
                                 <i className="fas fa-bars fa-lg text-cream"/>
                             </button>
@@ -90,6 +90,15 @@ const NavBar = ({auth:{ isAuthenticated, loading }, logout}) => {
                                     <NavItem>
                                         <NavLink href="/genre/entertainment">Entertainment</NavLink>
                                     </NavItem>
+                                    <NavItem>
+                                        <NavLink href="/genre/ecoandbuisness">Eco & Business</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="/genre/tech">Technology</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="/genre/sports">Sports</NavLink>
+                                    </NavItem>
                                 </Nav>
                             </Collapse>
                         </Navbar>
@@ -98,9 +107,9 @@ const NavBar = ({auth:{ isAuthenticated, loading }, logout}) => {
             </div>
             <div id="mySidebar" className="sidebar">
                 <a href="javascript:void(0)" className="closebtn" onClick={()=>closeNav()}><i className="fas fa-times"/></a>
-                <Link to="/about">About Us</Link>
-                <Link to="/vision">Vision</Link>
-                <Link to="/founders">Founders</Link>
+                <Link to="/about" onClick={()=>closeNav()}>About Us</Link>
+                <Link to="/founders" onClick={()=>closeNav()}>Founders</Link>
+                <Link to="/contactus" onClick={()=>closeNav()}>Contact Us</Link>
                 { !loading && (
                     <Fragment>
                         {isAuthenticated ? AuthLinks : GuestLinks}
@@ -111,22 +120,22 @@ const NavBar = ({auth:{ isAuthenticated, loading }, logout}) => {
                         <div className="col-12 text-center">
                             <div className="text-cream h4"> Find Us: </div>
                             <ul className="iconlist">
-                                <a href="https://www.facebook.com">
+                                <a href="https://www.facebook.com/theoddetribune">
                                     <li className="facebook">
                                         <i className="fab fa-facebook"/>
                                     </li>
                                 </a>
-                                <a href="https://www.twitter.com">
+                                <a href="https://twitter.com/TheOddeTribune">
                                     <li>
                                         <i className="fab fa-twitter"/>
                                     </li>
                                 </a>
-                                <a href="https://www.instagram.com">
+                                <a href="https://www.instagram.com/theoddetribune/">
                                     <li>
                                         <i className="fab fa-instagram"/>
                                     </li>
                                 </a>
-                                <a href="https://www.linkedin.com/home">
+                                <a href="https://www.linkedin.com/company/the-odde-tribune/">
                                     <li>
                                         <i className="fab fa-linkedin-in"/>
                                     </li>

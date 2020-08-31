@@ -1,37 +1,42 @@
 import React, { Fragment, useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {editArticle, getDraftArticleByID, SubmitArticle} from "../../../actions/draftarticles";
-import {Link, withRouter} from "react-router-dom";
+import {editArticle, getDraftArticleByID} from "../../../actions/draftarticles";
+import {withRouter} from "react-router-dom";
+import Spinner from "../major/Spinner";
 
-const EditArticleForm = ({draftarticles:{loading, draftarticle}, editArticle, getDraftArticleByID, SubmitArticle, history, match}) => {
+const EditArticleForm = ({draftarticles:{loading, draftarticle}, editArticle, getDraftArticleByID, history, match}) => {
 
     const [formData,setFormData] = useState({
         heading: '',
         featurephoto:'',
         content:'',
         source:'',
-        genre:''
+        genre:'',
+        snippet:''
     })
 
     useEffect(()=>{
-        getDraftArticleByID(match.params.id);
-
-        setFormData({
-            heading: loading || !draftarticle.heading ? '' : draftarticle.heading,
-            featurephoto: loading || !draftarticle.featurephoto ? '' : draftarticle.featurephoto,
-            content: loading || !draftarticle.content ? '' : draftarticle.content,
-            source: loading || !draftarticle.source ? '' : draftarticle.source,
-            genre: loading || !draftarticle.genre ? '' : draftarticle.genre
-        })
-    },[getDraftArticleByID, loading])
+        if(!draftarticle) getDraftArticleByID(match.params.id);
+        if(!loading && draftarticle){
+            setFormData({
+                heading: loading || !draftarticle.heading ? '' : draftarticle.heading,
+                featurephoto: loading || !draftarticle.featurephoto ? '' : draftarticle.featurephoto,
+                content: loading || !draftarticle.content ? '' : draftarticle.content,
+                source: loading || !draftarticle.source ? '' : draftarticle.source,
+                genre: loading || !draftarticle.genre ? '' : draftarticle.genre,
+                snippet: loading || !draftarticle.snippet ? '' : draftarticle.snippet
+            })
+        }
+    },[loading, getDraftArticleByID, draftarticle])
 
     const {
         heading,
         featurephoto,
         content,
         source,
-        genre
+        genre,
+        snippet
     } = formData
 
     const onChange = e => setFormData({...formData, [e.target.name]:e.target.value})
@@ -41,12 +46,7 @@ const EditArticleForm = ({draftarticles:{loading, draftarticle}, editArticle, ge
         editArticle(formData,history,match.params.id)
     }
 
-    const onClick = e => {
-        e.preventDefault()
-        SubmitArticle(match.params.id, history)
-    }
-
-    return(
+    return loading || !draftarticle ? <Spinner /> : (
         <Fragment>
             <div className="py-5">
                 <div className="h2 text-center text-cream">
@@ -66,18 +66,18 @@ const EditArticleForm = ({draftarticles:{loading, draftarticle}, editArticle, ge
                                     <textarea className="form-control" placeholder="Content" name="content" onChange={(e)=>onChange(e)} value={content} required rows="15"/>
                                 </div>
                                 <div className="form-group">
+                                    <input type="text" className="form-control" placeholder="Snippet*" onChange={(e)=>onChange(e)} value={snippet} name="snippet" />
+                                </div>
+                                <div className="form-group">
                                     <input type="text" className="form-control" placeholder="Source" onChange={(e)=>onChange(e)} value={source} name="source" />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Genre" onChange={(e)=>onChange(e)} value={genre} name="genre" />
+                                    <input type="text" className="form-control" placeholder="Beat" onChange={(e)=>onChange(e)} value={genre} name="genre" />
                                 </div>
                                 <button type="submit" className="btn btn-success">Save Changes</button>
                             </form>
                         </div>
                     </div>
-                    <button className="btn btn-success m-2 text-center" onClick={(e)=>onClick(e)}>
-                        <h4>Submit Article to Editor</h4>
-                    </button>
                 </div>
             </div>
         </Fragment>
@@ -87,7 +87,6 @@ const EditArticleForm = ({draftarticles:{loading, draftarticle}, editArticle, ge
 EditArticleForm.propTypes = {
     editArticle: PropTypes.func.isRequired,
     getDraftArticleByID: PropTypes.func.isRequired,
-    SubmitArticle: PropTypes.func.isRequired,
     draftarticles: PropTypes.object.isRequired
 }
 
@@ -95,4 +94,4 @@ const mapStateToProps = state => ({
     draftarticles: state.draftarticles
 })
 
-export default connect(mapStateToProps,{editArticle, getDraftArticleByID, SubmitArticle})(withRouter(EditArticleForm));
+export default connect(mapStateToProps,{editArticle, getDraftArticleByID})(withRouter(EditArticleForm));
