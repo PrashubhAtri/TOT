@@ -12,7 +12,8 @@ const EditDraftForm = ({drafts:{loading, draft}, editDraft, getDraftByID, Submit
         content:'',
         source:'',
         genre:'',
-        snippet:''
+        snippet:'',
+        author: ''
     })
 
     useEffect(()=>{
@@ -24,7 +25,8 @@ const EditDraftForm = ({drafts:{loading, draft}, editDraft, getDraftByID, Submit
                 content: loading || !draft.content ? '' : draft.content,
                 source: loading || !draft.source ? '' : draft.source,
                 genre: loading || !draft.genre ? '' : draft.genre,
-                snippet: loading || !draft.snippet ? '' : draft.snippet
+                snippet: loading || !draft.snippet ? '' : draft.snippet,
+                author: loading || !draft.author ? '' : draft.author
             })
         }
     },[getDraftByID, loading, draft])

@@ -16,24 +16,38 @@ const Technology = ({getArticles, article:{articles, loading}}) => {
                     <div className="row">
                         {articles.length > 0 ? (
                             articles.filter(article => (article.genre==="Technology" || article.genre==="Tech" || article.genre==="technology" || article.genre==="tech")).map(art=>(
-                                <div className="col-md-6">
-                                    <div key={art._id}>
-                                        <div className="card mb-4">
-                                            <header className="card-header">
+                                <div className="col-md-6" key={art._id}>
+                                    <div>
+                                        <div className="card my-2">
+                                            <div className="text-center p-2 text-cream bg-light">
                                                 <h4>
                                                     {art.heading}
                                                 </h4>
-                                            </header>
-                                            <a href="https://www.google.com"className="text-center">
-                                                <img src={art.featurephoto} alt="Display Image" className="card-img"/>
-                                            </a>
-                                            <div placeholder="card-body">
+                                                <div className="container">
+                                                    <div className="row">
+                                                        <div className="col-12 p-2">
+                                                            <b>
+                                                                {art.genre.toUpperCase()}
+                                                            </b>
+                                                            {' | '}
+                                                            <i>
+                                                                {art.author.toUpperCase()}
+                                                            </i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <img src={art.featurephoto} alt="Display Image" className="card-img m-auto"/>
+                                            <div placeholder="card-body m-auto text-center">
                                                 <p className="card-text p-1">
                                                     {art.snippet}
                                                 </p>
-                                                <Link to={`/article/${art._id}`}>
-                                                    <h4>Further Reading</h4>
-                                                </Link>
+                                                <div className="text-center">
+                                                    <Link to={`/article/${art._id}`} className="text-dark">
+                                                        <h5>Read More...</h5>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

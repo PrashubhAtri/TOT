@@ -55,13 +55,22 @@ route.put('/:id/save',[auth,CheckObjId('id'),
         source
     } = req.body
     try{
+        const df_old = await DraftPost.findOne({heading})
+
+        if(!df_old){
+            return res.json({msg:"404 Not Found"})
+        }
+
         const DraftFields = {
             heading: heading,
             genre:genre,
             snippet:snippet,
             content: content,
             featurephoto: featurephoto,
-            source: source
+            source: source,
+            user: df_old.user,
+            author: df_old.author,
+            date: df_old.date
         }
 
         let draft = await DraftPost.findOneAndUpdate(

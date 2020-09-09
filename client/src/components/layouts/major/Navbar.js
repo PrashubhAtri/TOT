@@ -122,22 +122,22 @@ const NavBar = ({auth:{ isAuthenticated, loading }, logout}) => {
                             <ul className="iconlist">
                                 <a href="https://www.facebook.com/theoddetribune">
                                     <li className="facebook">
-                                        <i className="fab fa-facebook"/>
+                                        <i className="fab fa-facebook fa-2x"/>
                                     </li>
                                 </a>
                                 <a href="https://twitter.com/TheOddeTribune">
                                     <li>
-                                        <i className="fab fa-twitter"/>
+                                        <i className="fab fa-twitter fa-2x"/>
                                     </li>
                                 </a>
                                 <a href="https://www.instagram.com/theoddetribune/">
                                     <li>
-                                        <i className="fab fa-instagram"/>
+                                        <i className="fab fa-instagram fa-2x"/>
                                     </li>
                                 </a>
                                 <a href="https://www.linkedin.com/company/the-odde-tribune/">
                                     <li>
-                                        <i className="fab fa-linkedin-in"/>
+                                        <i className="fab fa-linkedin-in fa-2x"/>
                                     </li>
                                 </a>
                             </ul>
